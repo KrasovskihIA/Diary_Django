@@ -1,18 +1,19 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<body>
-   <h2>Мой Ежедневник</h2>
-   <a href=""><button class="btn" type = "submit">Добавить запись в дневник</button></a>
+{% extends "journal/base.html" %}
+{% load humanize %}
+{% block content %}
+<h2>Дневник</h2>
+<a href=" "><button class="btn btn-primary" type = "submit">Добавить запись в журнал</button></a>
+<div>
    {% for journal in journal_list %}
-   <ul>
-      <li>{{ journal.title }}</li>
-      <li>{{ journal.description |truncatechars:120 }}</li>
-      <li>{{ journal.date_created }}</li>
-   </ul>
+   <div class="list-group">
+      <a href=" " class="list-group-item list-group-item-action flex-column align-items-start">
+         <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ journal.title }}</h5>
+            <small>{{ journal.date_created|naturaltime }}</small>
+         </div>
+         <p class="mb-1">{{ journal.description| truncatechars:120}}</p>
+      </a>
+   </div>
    {% endfor %}
+   {% endblock %}
 </div>
-</body>
-</html>
