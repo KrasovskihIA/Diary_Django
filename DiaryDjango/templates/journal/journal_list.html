@@ -2,11 +2,11 @@
 {% load humanize %}
 {% block content %}
 <h2>Дневник</h2>
-<a href=" "><button class="btn btn-primary" type = "submit">Добавить запись в журнал</button></a>
+<a href="{% url 'createjournal' %}"><button class="btn btn-primary" type = "submit">Добавить запись в журнал</button></a>
 <div>
    {% for journal in journal_list %}
    <div class="list-group">
-      <a href=" " class="list-group-item list-group-item-action flex-column align-items-start">
+      <a href="journal/journalupdate/{{ journal.id }}" class="list-group-item list-group-item-action flex-column align-items-start">
          <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1">{{ journal.title }}</h5>
             <small>{{ journal.date_created|naturaltime }}</small>
